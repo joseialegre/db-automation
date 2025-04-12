@@ -29,7 +29,5 @@ def main():
         users = cursor.fetchall()
         print("Usuarios:", users)
 
-
-
 if __name__ == "__main__":
     main()
