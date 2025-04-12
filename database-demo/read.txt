@@ -1,0 +1,42 @@
+DOWNLOAD DATABASE
+docker run --name sql_server -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=TuClaveSegura123" -e "MSSQL_PID=Express" -p 1433:1433 -d mcr.microsoft.com/mssql/server:2019-latest
+
+RUN DATABASE
+docker run "
+--name sql_server
+-e \"ACCEPT_EULA=Y\"
+-e \"SA_PASSWORD=TuClaveSegura123\"
+-e \"MSSQL_PID=Express\"
+-p 1433:1433
+-d mcr.microsoft.com/mssql/server:2019-latest
+"
+
+COPY AND EXECUTE
+docker cp init.sql sql_server:/init.sql
+docker exec -it sql_server /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P TuClaveSegura123 -i /init.sql
+
+DOWNLOAD ADVENTURE WORKS
+docker cp AdventureWorks.bak sql_server:/AdventureWorks.bak
+docker exec -it sql_server /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P TuClaveSegura123 -Q "RESTORE DATABASE AdventureWorks FROM DISK='/AdventureWorks.bak' WITH MOVE 'AdventureWorksLT2012_Data' TO '/var/opt/mssql/data/AdventureWorks.mdf', MOVE 'AdventureWorksLT2012_Log' TO '/var/opt/mssql/data/AdventureWorks.ldf'"
+
+CREATE TABLE
+# Crear la base de datos
+docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -Q "CREATE DATABASE Ventas;"
+
+# Crear la tabla
+docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -d Ventas -Q "CREATE TABLE Productos (Id INT PRIMARY KEY IDENTITY(1,1), Nombre NVARCHAR(100) NOT NULL, Precio DECIMAL(10, 2) NOT NULL);"
+
+# Insertar datos
+docker exec sqlserver /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P YourStrong@Passw0rd -d Ventas -Q "INSERT INTO Productos (Nombre, Precio) VALUES ('Laptop', 1200.50), ('Mouse', 25.99), ('Teclado', 45.75);"
+
+
+crear login
+USE [master]
+GO
+CREATE LOGIN [JohnEgbert] WITH PASSWORD=N'YourPassword',
+                 DEFAULT_DATABASE=[YourDB], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF
+GO
+USE [YourDB]
+GO
+CREATE USER [JohnEgbert] FOR LOGIN [JohnEgbert] WITH DEFAULT_SCHEMA=[dbo]
+GO
