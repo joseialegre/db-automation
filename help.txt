@@ -1,0 +1,7 @@
+ejecutar paquete tests
+
+build docker
+docker build -t db-automation .
+
+run docker
+docker run --rm -p 5252:5252 db-automation
