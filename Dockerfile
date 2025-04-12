@@ -1,14 +1,19 @@
 # Usa Python 3.13 slim
 FROM python:3.13-slim
 
-# Instala Java (requisito de allure) y herramientas necesarias
+ENV DB_SERVER=host.docker.internal,1433
+ENV DB_NAME=master
+ENV DB_USER=jose
+ENV DB_PASSWORD=apple951
+
+# Instala Java (requisito de allure)
 RUN apt-get update && apt-get install -y \
     curl \
     unzip \
     openjdk-17-jre \
     && rm -rf /var/lib/apt/lists/*
 
-# Instala allure CLI (cambia la URL por una versión más estable)
+# Instala allure CLI
 RUN curl -o allure.zip -L https://github.com/allure-framework/allure2/releases/download/2.14.0/allure-2.14.0.zip \
     && unzip allure.zip -d /opt/ \
     && mv /opt/allure-2.14.0 /opt/allure \
