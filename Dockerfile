@@ -44,5 +44,9 @@ COPY . .
 # Instala dependencias Python
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Exponer el puerto para Allure (8000 por defecto)
+EXPOSE 8000
+
+# Ejecuta pytest y Allure serve en el contenedor
 ENTRYPOINT ["bash", "-c"]
 CMD ["pytest tests --alluredir=allure-results && allure serve allure-results"]
