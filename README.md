@@ -1,3 +1,5 @@
+> **Nota:** Este proyecto da por hecho que tienes una base de datos SQL Server configurada y accesible, así como Docker instalado en tu computadora.
+
 # 🧪 DB Automation Project
 ---
 
