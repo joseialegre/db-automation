@@ -1,0 +1,16 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+.env
+*.env
+
+.vscode/
+.idea/
+*.iml
+
+allure-results/
+tests/__pycache__/
+db/__pycache__/
