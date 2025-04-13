@@ -1,6 +1,6 @@
 > **Nota:** Este proyecto da por hecho que tienes una base de datos SQL Server configurada y accesible, así como Docker instalado en tu computadora.
 
-# 🧪 DB Automation Project
+# 🧪 DB Automation - alpha 1.0
 ---
 
 ## 📦 Requisitos
@@ -38,6 +38,12 @@ docker run --rm -p 5050:5050 \
 ### 🌐 Ver el Reporte
 
 [http://localhost:5050/static/projects/default/reports/latest/index.html](http://localhost:5050/static/projects/default/reports/latest/index.html)
+
+### 📊 Vista del Reporte Allure
+
+![Reporte 1](https://imgur.com/TpJ8xoq.png)
+![Reporte 2](https://imgur.com/H10bUqv.png)
+
 
 
 ## 🐳 En Docker (Contenedor del Proyecto)
