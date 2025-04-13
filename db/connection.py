@@ -1,3 +1,4 @@
+import allure
 import pyodbc
 import os
 
@@ -23,5 +24,6 @@ class DatabaseConnection:
         if self.connection:
             self.connection.close()
 
+@allure.step("Se realiza conexion a Base de Datos")
 def get_db_connection():
     return DatabaseConnection()

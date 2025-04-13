@@ -1,14 +1,24 @@
+import allure
+from allure_commons.mapping import allure_tag_sep
+from allure_pytest.utils import allure_description
+
+from db.connection import get_db_connection
+
 class UserQueries:
     @staticmethod
     def get_all_users():
         return "SELECT * FROM Persona"
 
     @staticmethod
-    def get_user_by_id(user_id):
-        return "SELECT * FROM Cliente WHERE id = ?", (user_id,)
+    @allure.step("Se buscan las personas en la base de datos")
+    def traer_personas():
+        query = "SELECT * FROM persona"
+        with get_db_connection() as conn:
+            return UserQueries.ejecutar_consulta(query, conn)
 
-# Puedes añadir más clases para diferentes entidades/tablas
-class ProductQueries:
     @staticmethod
-    def get_products_by_category(category_id):
-        return "SELECT * FROM Cliente WHERE categoria_id = ?", (category_id,)
+    @allure.step("Ejecutando consulta SQL: {query}")
+    def ejecutar_consulta(query, conn):
+        cursor = conn.cursor()
+        cursor.execute(query)
+        return cursor.fetchall()
