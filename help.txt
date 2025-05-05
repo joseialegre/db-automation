@@ -1,8 +1,27 @@
 ejecutar paquete tests
 
+REQUIREMENTS
+1. Save Requirements pip freeze > requirements.txt
+2. Install Requirements pip install -r requirements.txt
+------------
+
 build docker
 docker build -t db-automation .
 
 run docker
 docker run --rm -p 5252:5252 db-automation
 docker run --rm -p 5252:5252 -e DB_SERVER=host.docker.internal,1433 -e DB_NAME=master -e DB_USER=jose -e DB_PASSWORD=apple951 db-automation
+docker run --rm -p 5252:5252 -p 8000:8000 db-automation
+
+1. Exec Tests
+pytest tests --alluredir=allure-results
+or
+rm -r -fo allure-results; pytest tests --alluredir=allure-results
+allure serve allure-results
+
+
+2. Exec allure serve
+docker run --rm -p 5050:5050 -v "${PWD}/allure-results:/app/allure-results" -v "${PWD}/allure-report:/app/allure-report" frankescobar/allure-docker-service
+
+3. Allure here
+http://localhost:5050/static/projects/default/reports/latest/index.html
