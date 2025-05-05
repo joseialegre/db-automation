@@ -17,6 +17,7 @@ docker run --rm -p 5252:5252 -p 8000:8000 db-automation
 pytest tests --alluredir=allure-results
 or
 rm -r -fo allure-results; pytest tests --alluredir=allure-results
+allure serve allure-results
 
 
 2. Exec allure serve
