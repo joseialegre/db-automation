@@ -21,7 +21,7 @@ class DatabaseStep:
         dataframe.to_csv(csv_buffer, index=False)
         allure.attach(
             csv_buffer.getvalue(),
-            name="Respuesta CSV",
+            name="Respuesta:",
             attachment_type=allure.attachment_type.CSV
         )
         if dataframe.empty:
