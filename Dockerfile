@@ -4,8 +4,7 @@ FROM python:3.13-slim
 ENV DB_SERVER=host.docker.internal,1433
 ENV DB_NAME=master
 ENV DB_USER=jose
-ENV DB_PASSWORD=apple951
-
+ENV DB_PASSWORD=*****
 # Instala Java (requisito de allure)
 RUN apt-get update && apt-get install -y \
     curl \

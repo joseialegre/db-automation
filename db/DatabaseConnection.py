@@ -1,11 +1,10 @@
-import allure
 from sqlalchemy import create_engine
 import os
 
 class DatabaseConnection:
     def __init__(self):
-        self.server = os.getenv("DB_SERVER", "topaz-tesoreria-db.nbch.com.ar")
-        self.database = os.getenv("DB_NAME", "tesoreria")
+        self.server = os.getenv("DB_SERVER", "topaz-mu-db.nbch.com.ar")
+        self.database = os.getenv("DB_NAME", "mu")
         self.username = os.getenv("DB_USER", "aut_apit")
         self.password = os.getenv("DB_PASSWORD", "regreso584")
         self.connection_url = (

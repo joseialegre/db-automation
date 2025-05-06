@@ -7,7 +7,7 @@ from db.DatabaseConnection import get_db_connection
 class DatabaseStep:
 
     @staticmethod
-    @allure.step("Se ejecuta la consulta en la base de datos de Topaz")
+    #@allure.step("Se ejecuta la consulta en la base de datos de Topaz")
     def executeQuery(query):
         with get_db_connection() as conn:
             dataframe = pd.read_sql_query(query, conn)
@@ -15,7 +15,7 @@ class DatabaseStep:
             return dataframe
 
     @staticmethod
-    @allure.step("Se obtiene respuesta con resultado")
+    #@allure.step("Se obtiene respuesta con resultado")
     def validate(dataframe):
         csv_buffer = io.StringIO()
         dataframe.to_csv(csv_buffer, index=False)
