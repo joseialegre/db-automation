@@ -21,6 +21,26 @@ class ProveedorStep:
         return ProveedorStep.buildQuery("Sucursales/saldos_sucursales_sin_referencia")
 
     @staticmethod
+    @allure.step("Se buscan saldos inconsistentes")
+    def buscar_saldos_inconsistentes():
+        return ProveedorStep.buildQuery("Saldos/saldos_inconsistentes")
+
+    @staticmethod
+    @allure.step("Se buscan CBUs duplicados en Saldos")
+    def buscar_cbus_duplicados():
+        return ProveedorStep.buildQuery("Saldos/saldos_cbu_duplicados")
+
+    @staticmethod
+    @allure.step("Se buscan clientes vinculados a Sucursal no valida")
+    def buscar_clientes_sucursal():
+        return ProveedorStep.buildQuery("Cliente/clientes_sucursal_no_valida")
+
+    @staticmethod
+    @allure.step("Se buscan clientes vinculados a Persona no valida")
+    def buscar_clientes_persona():
+        return ProveedorStep.buildQuery("Cliente/clientes_persona_no_valida")
+
+    @staticmethod
     def buildQuery(nombre_archivo):
         query = ProveedorStep.readSQLFile(nombre_archivo)
         allure.attach(query, name="Consulta SQL:", attachment_type=allure.attachment_type.TEXT)
