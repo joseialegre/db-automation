@@ -41,9 +41,29 @@ class ProveedorStep:
         return ProveedorStep.buildQuery("Cliente/clientes_persona_no_valida")
 
     @staticmethod
+    @allure.step("Se buscan saldos sin cre_saldos")
+    def saldos_y_vtasaldos():
+        return ProveedorStep.buildQuery("Saldos/saldos_vtasaldos_sin_referencia")
+
+    @staticmethod
+    @allure.step("Se buscan tarjetas sin estados")
+    def buscar_tarjetas_sin_estado():
+        return ProveedorStep.buildQuery("Saldos/tarjeta_estado_sin_referencia")
+
+    @staticmethod
+    @allure.step("Se buscan Movimientos Contables sin referencia en Saldos")
+    def buscar_movimiento_contable_sin_saldo():
+        return ProveedorStep.buildQuery("Saldos/saldos_movimiento_contable")
+
+    @staticmethod
+    @allure.step("Se buscan Estados de Cuenta sin referencia en Saldos")
+    def buscar_estados_cuenta_sin_saldo():
+        return ProveedorStep.buildQuery("Saldos/saldos_grl_estado_cuenta")
+
+
+    @staticmethod
     def buildQuery(nombre_archivo):
         query = ProveedorStep.readSQLFile(nombre_archivo)
-        allure.attach(query, name="Consulta SQL:", attachment_type=allure.attachment_type.TEXT)
         return DatabaseStep.executeQuery(query)
 
     @staticmethod

@@ -9,4 +9,4 @@ from db.ProveedorStep import ProveedorStep
 def test_sucursales_saldos():
     rows = ProveedorStep.sucursales_saldos()
     if len(rows) > 0:
-        assert False, "¡Existen inconsistencias!"
+        assert False, "Existen " +str(len(rows))+ " Saldos con sucursal no válida"

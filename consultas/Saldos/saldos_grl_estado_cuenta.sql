@@ -1,0 +1,1 @@
+SELECT * from GRL_ESTADOS_DE_CUENTA b with(nolock) where b.JTSOID not in(select a.JTS_OID from SALDOS A with(nolock))

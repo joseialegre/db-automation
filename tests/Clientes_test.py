@@ -10,7 +10,7 @@ from db.ProveedorStep import ProveedorStep
 def test_clientes_sucursal():
     rows = ProveedorStep.buscar_clientes_sucursal()
     if len(rows) > 0:
-        assert False, "Existen "+str(len(rows))+" clientes con sucursal inexistente"
+        assert False, "Existen "+str(len(rows))+" Clientes con Sucursal inexistente"
 
 @allure.parent_suite("Clientes")
 @allure.suite("Clientes sin vínculo a persona física o jurídica")
@@ -19,4 +19,4 @@ def test_clientes_sucursal():
 def test_clientes_persona():
     rows = ProveedorStep.buscar_clientes_persona()
     if len(rows) > 0:
-        assert False, "Existen "+str(len(rows))+" clientes vinculados a persona no válidas"
+        assert False, "Existen "+str(len(rows))+" Clientes Vinculados a persona no válidas"

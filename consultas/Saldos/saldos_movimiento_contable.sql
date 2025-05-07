@@ -1,0 +1,5 @@
+SELECT a.*
+FROM MOVIMIENTOS_CONTABLES a WITH (NOLOCK)
+LEFT JOIN SALDOS b WITH (NOLOCK)
+ON a.saldo_jts_oid = b.jts_oid
+WHERE b.jts_oid IS NULL;
